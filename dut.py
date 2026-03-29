@@ -1,7 +1,6 @@
-# disktree.py
+#!/usr/bin/python
 import os
 import shutil
-
 
 def get_size(start_path='.'):
     total_size = 0
@@ -34,7 +33,13 @@ def main():
     # Analyze immediate subdirectories and files
     for item in os.listdir(path):
         full_path = os.path.join(path, item)
-        size = get_size(full_path) if os.path.isdir(full_path) else os.path.getsize(full_path)
+        try:
+            if os.path.isdir(full_path) and not os.path.islink(full_path):
+                size = get_size(full_path)
+            else:
+                size = os.path.getsize(full_path)
+        except (FileNotFoundError, OSError):
+            size = 0
         items.append((item, size))
 
     # Sort by size descending
@@ -42,11 +47,17 @@ def main():
     
     max_size = items[0][1] if items else 1
 
+    min_size = 100 * 1024 * 1024  # 100 MB
+
     for name, size in items:
+        if size < min_size:
+            continue
         relative_size = size / max_size
         bar_length = int(relative_size * bar_max_width)
         bar = "█" * bar_length
         print(f"{name[:20]:<20} | {format_size(size):>10} | {bar}")
+
+    print(f"\n(Items less than 100 MB are not shown)")
 
 if __name__ == "__main__":
     main()

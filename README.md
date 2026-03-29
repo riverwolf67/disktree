@@ -1,6 +1,18 @@
 # README.md
 
-disktree is a sh cli tool to show a **bar-graph distribution** (like [filelight](https://github.com/kde/filelight)) info in linux shell / terminal.
+**Contemplating rename to `dut` to remind me when I type du there is a better command to use.**
+
+`dut` Disk usage tree reports the file space usage with color-code bars in the terminal.
+
+Synopsis: dut [OPTION]... [FILE]...
+
+With no arguments, ‘dut’ reports the space needed to represent the
+files at or under the current directory.  The space is printed in units
+of 1024 bytes, but this can be overridden (*note Block size::).
+Non-integer quantities are rounded up to the next higher unit.
+
+``dut`` reports the space needed to represent a set of files.  Synopsis:
+ tool to show a **bar-graph distribution** (like [filelight](https://github.com/kde/filelight)) info in linux shell / terminal.
 
 Displaying visual disk usage (similar to Filelight’s radial map) directly in a Bash terminal is best handled using a Python script, as it allows for easier calculation of terminal widths and color formatting.
 
@@ -14,7 +26,7 @@ If you are looking for a highly polished, interactive "Filelight-style" experien
 * **`[dust](https://github.com/bootandy/dust)`**: A modern version of `du` written in Rust that provides a tree-like visual overview with colored bars automatically.
 * **`[vizex](https://github.com/bexxmodd/vizex)`**: A Python-based tool specifically designed to show disk usage with graphs in the terminal.
 
-### The Python Script (`disktree.py`)
+### The Python Script (`dut.py`)
 
 This script traverses the current directory, calculates sizes, and renders a visual representation.
 
@@ -74,8 +86,6 @@ if __name__ == "__main__":
 ---
 
 ### How to use it
-1. Save the code as `disktree.py`.
-2. Run it with: `python3 disktree.py`.
+1. Save the code as `dut.py`.
+2. Run it with: `python3 dut.py`.
 3. It will scan the current directory and output a sorted list with a visual bar representing the weight of each folder/file.
-
-Would you like me to show you how to wrap this into a permanent Bash alias so you can run it from any folder?
