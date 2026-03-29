@@ -77,5 +77,3 @@ if __name__ == "__main__":
 1. Save the code as `disktree.py`.
 2. Run it with: `python3 disktree.py`.
 3. It will scan the current directory and output a sorted list with a visual bar representing the weight of each folder/file.
-
-Would you like me to show you how to wrap this into a permanent Bash alias so you can run it from any folder?
